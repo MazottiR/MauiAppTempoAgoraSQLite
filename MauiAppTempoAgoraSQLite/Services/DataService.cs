@@ -7,8 +7,8 @@ namespace MauiAppTempoAgoraSQLite.Services
     {
         public static async Task<Tempo?> GetPrevisao(string cidade)
         {
-            Tempo? tempo = null;
-            string chave = "6135072afe7f6cec1537d5cb08a5a1a2";
+            Tempo? t = null;
+            string chave = "445198f1a0bfb33abbf68391c34c02e6";
             string url = $"https://api.openweathermap.org/data/2.5/weather?" +
                         $"q={cidade}$units=metric&appid={chave}";
 
@@ -23,14 +23,14 @@ namespace MauiAppTempoAgoraSQLite.Services
                     DateTime sunrise = time.AddSeconds((double)rascunho["sys"]["sunrise"]).ToLocalTime();
                     DateTime sunset = time.AddSeconds((double)rascunho["sys"]["sunset"]).ToLocalTime();
 
-                    tempo = new()
+                    t = new()
                     {
                         lat = (double)rascunho["coord"]["lat"],
                         lon = (double)rascunho["coord"]["lon"],
                         description = (string)rascunho["weather"]["0"]["description"],
                         main = (string)rascunho["weather"]["0"]["main"],
-                        tempmin = (double)rascunho["main"]["tempmin"],
-                        tempmax = (double)rascunho["main"]["tempmax"],
+                        temp_min = (double)rascunho["main"]["tempmin"],
+                        temp_max = (double)rascunho["main"]["tempmax"],
                         speed = (double)rascunho["wind"]["speed"],
                         visibility = (int)rascunho["visibility"],
                         sunrise = sunrise.ToString(),
@@ -38,7 +38,7 @@ namespace MauiAppTempoAgoraSQLite.Services
                     };
                 }
             }
-            return tempo;
+            return t;
         }
     }
 }

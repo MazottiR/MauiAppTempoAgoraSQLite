@@ -11,6 +11,8 @@ namespace MauiAppTempoAgoraSQLite.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        public string Cidade { get; set; }
+        public DateTime DataConsulta { get; set; }
         public double? lon { get; set; }
         public double? lat { get; set; }
         public double? temp_min { get; set; }
